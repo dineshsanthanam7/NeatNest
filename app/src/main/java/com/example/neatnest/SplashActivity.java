@@ -2,7 +2,12 @@ package com.example.neatnest;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.TextView;
@@ -11,6 +16,8 @@ import com.airbnb.lottie.LottieAnimationView;
 
 public class SplashActivity extends AppCompatActivity {
     TextView appname;
+    private static final String NOTIFICATION_CHANNEL_ID = "location_notification_channel";
+    private NotificationManager notificationManager;
     LottieAnimationView logo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +36,14 @@ public class SplashActivity extends AppCompatActivity {
 //
 //                }
                // else {
-                    Intent i = new Intent(getApplicationContext(), user_choice.class);
+                notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                createNotificationChannel();
+                showNotification("Welcome .. to NeatNest");
+
+
+                Intent i = new Intent(getApplicationContext(), user_choice.class);
                     startActivity(i);
+
                // }
                 finish();
             }
@@ -38,4 +51,23 @@ public class SplashActivity extends AppCompatActivity {
 
 
     }
+    private void createNotificationChannel() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "Welcome Message", NotificationManager.IMPORTANCE_DEFAULT);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    private void showNotification(String message) {
+        Notification notification = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+            notification = new Notification.Builder(this, NOTIFICATION_CHANNEL_ID)
+                    .setContentTitle("Welcome Message")
+                    .setContentText(message)
+                    .setSmallIcon(android.R.drawable.ic_dialog_info) // Use a default system icon
+                    .build();
+        }
+        notificationManager.notify(0, notification);
+    }
+
 }
