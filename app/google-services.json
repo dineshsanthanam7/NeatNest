@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1059068583755",
+    "project_id": "neatnest-15542",
+    "storage_bucket": "neatnest-15542.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1059068583755:android:3182888d7c93d2c7fc92ce",
+        "android_client_info": {
+          "package_name": "com.example.neatnest"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVmy8HE9kTjYVAmxQBxCPI2iNoZaCgEig"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
