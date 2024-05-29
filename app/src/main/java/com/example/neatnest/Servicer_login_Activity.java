@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -23,6 +25,7 @@ TextView signup_servicer;
     private EditText loginEmail, loginPassword;
     private Button loginButton;
     private FirebaseAuth auth;
+    TextView splashText;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +35,9 @@ TextView signup_servicer;
         loginPassword = findViewById(R.id.editTextTextPassword_servicer);
         loginButton = findViewById(R.id.let_in);
         auth = FirebaseAuth.getInstance();
+        splashText = findViewById(R.id.splashText);
+        Animation alphaAnimation = AnimationUtils.loadAnimation(this, R.anim.alpha_animation);
+        splashText.startAnimation(alphaAnimation);
 
         signup_servicer=findViewById(R.id.new_servicer);
         signup_servicer.setOnClickListener(v -> {
