@@ -57,7 +57,7 @@ TextView signup_servicer;
                                     @Override
                                     public void onSuccess(AuthResult authResult) {
                                         Toast.makeText(Servicer_login_Activity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(Servicer_login_Activity.this, MainActivity.class));
+                                        startActivity(new Intent(Servicer_login_Activity.this, MainActivity2.class));
                                         finish();
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {

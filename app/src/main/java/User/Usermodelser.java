@@ -7,35 +7,20 @@ public class Usermodelser {
     private String phonenumber;
     private Timestamp createdTimestamp;
     private String address;
-    private String worhexperience;
+    private String workexperience;
     private String userID;
 
     public Usermodelser() {
+        // No-argument constructor required for Firestore
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getWorhexperience() {
-        return worhexperience;
-    }
-
-    public void setWorhexperience(String worhexperience) {
-        this.worhexperience = worhexperience;
-    }
-
-    public Usermodelser(String username, String phonenumber, Timestamp createdTimestamp, String userID,String address,String workexperience) {
+    public Usermodelser(String username, String phonenumber, Timestamp createdTimestamp, String userID, String address, String workexperience) {
         this.username = username;
         this.phonenumber = phonenumber;
         this.createdTimestamp = createdTimestamp;
-        this.userID=userID;
-        this.address=address;
-        this.worhexperience=workexperience;
+        this.userID = userID;
+        this.address = address;
+        this.workexperience = workexperience;
     }
 
     public String getUsername() {
@@ -62,6 +47,22 @@ public class Usermodelser {
         this.createdTimestamp = createdTimestamp;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getWorkexperience() {
+        return workexperience;
+    }
+
+    public void setWorkexperience(String workexperience) {
+        this.workexperience = workexperience;
+    }
+
     public String getUserID() {
         return userID;
     }
@@ -69,7 +70,4 @@ public class Usermodelser {
     public void setUserID(String userID) {
         this.userID = userID;
     }
-
-
-
 }

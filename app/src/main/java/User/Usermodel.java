@@ -47,6 +47,9 @@ public class Usermodel {
     public String getUserID() {
         return userID;
     }
+    public String getUserName() {
+        return username;
+    }
 
     public void setUserID(String userID) {
         this.userID = userID;

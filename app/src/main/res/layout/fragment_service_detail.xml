@@ -6,34 +6,31 @@
     android:background="@color/white"
     tools:context=".ServiceDetailFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/serviceTitleTextView"
-            android:layout_width="match_parent"
+            android:id="@+id/serviceNameTextView"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:paddingBottom="8dp" />
-
-        <TextView
-            android:id="@+id/serviceTypeTextView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:paddingBottom="8dp" />
+            android:textSize="20sp"
+            android:layout_gravity="center"
+            android:padding="16dp" />
 
         <TextView
             android:id="@+id/serviceDescriptionTextView"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp" />
+            android:padding="16dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/servicerRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </LinearLayout>
+
 
 
 </FrameLayout>
