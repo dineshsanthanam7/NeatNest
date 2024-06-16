@@ -56,8 +56,8 @@ public class ServiceAdapter extends RecyclerView.Adapter<ServiceAdapter.ServiceV
         }
 
         void bind(Service service) {
-            serviceNameTextView.setText(service.getName());
-            serviceDescriptionTextView.setText(service.getDescription());
+            serviceNameTextView.setText(service.getServiceName());
+            serviceDescriptionTextView.setText(service.getServiceDescription());
         }
 
         @Override

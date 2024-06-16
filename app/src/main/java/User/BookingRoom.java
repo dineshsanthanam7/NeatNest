@@ -3,35 +3,35 @@ package User;
 import com.google.firebase.Timestamp;
 
 public class BookingRoom {
-
     private String clientUserId;
     private String clientUserName;
+    private String clientPhoneNumber; // Added client phone number
     private String servicerUserId;
     private String servicerUserName;
+    private String servicerPhoneNumber; // Added servicer phone number
     private String serviceType;
     private String selectedDate;
     private String selectedTime;
     private String status;
     private Timestamp timestamp;
 
-    public BookingRoom() {
-        // Required empty public constructor
-    }
+    // Required empty constructor for Firestore serialization
+    public BookingRoom() {}
 
-    public BookingRoom(String clientUserId, String clientUserName, String servicerUserId, String servicerUserName,
-                       String serviceType, String selectedDate, String selectedTime, String status) {
+    public BookingRoom(String clientUserId, String clientUserName, String clientPhoneNumber, String servicerUserId, String servicerUserName,
+                       String servicerPhoneNumber, String serviceType, String selectedDate, String selectedTime, String status) {
         this.clientUserId = clientUserId;
         this.clientUserName = clientUserName;
+        this.clientPhoneNumber = clientPhoneNumber;
         this.servicerUserId = servicerUserId;
         this.servicerUserName = servicerUserName;
+        this.servicerPhoneNumber = servicerPhoneNumber;
         this.serviceType = serviceType;
         this.selectedDate = selectedDate;
         this.selectedTime = selectedTime;
         this.status = status;
-        this.timestamp = timestamp.now(); // This will be set when the object is saved to Firestore
+        this.timestamp = Timestamp.now(); // Initialize with current timestamp
     }
-
-    // Getters and setters
 
     public String getClientUserId() {
         return clientUserId;
@@ -49,6 +49,14 @@ public class BookingRoom {
         this.clientUserName = clientUserName;
     }
 
+    public String getClientPhoneNumber() {
+        return clientPhoneNumber;
+    }
+
+    public void setClientPhoneNumber(String clientPhoneNumber) {
+        this.clientPhoneNumber = clientPhoneNumber;
+    }
+
     public String getServicerUserId() {
         return servicerUserId;
     }
@@ -63,6 +71,14 @@ public class BookingRoom {
 
     public void setServicerUserName(String servicerUserName) {
         this.servicerUserName = servicerUserName;
+    }
+
+    public String getServicerPhoneNumber() {
+        return servicerPhoneNumber;
+    }
+
+    public void setServicerPhoneNumber(String servicerPhoneNumber) {
+        this.servicerPhoneNumber = servicerPhoneNumber;
     }
 
     public String getServiceType() {

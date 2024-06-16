@@ -16,6 +16,18 @@
         android:theme="@style/Theme.NeatNest"
         tools:targetApi="31">
         <activity
+            android:name=".ClientSignInActivity"
+            android:exported="false" />
+        <activity
+            android:name=".MainActivityservicer"
+            android:exported="false" />
+        <activity
+            android:name=".ClientBookingsListActivity"
+            android:exported="false" />
+        <activity
+            android:name=".adaptor.ClientBookingsListActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity2"
             android:exported="false" />
         <activity

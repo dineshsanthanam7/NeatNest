@@ -35,14 +35,18 @@ public class user_choice extends AppCompatActivity {
                 Animation animation = AnimationUtils.loadAnimation(user_choice.this, R.anim.button_animation);
                 // Apply animation to button
                 v.startAnimation(animation);
-                if(Firebaseutil.isloggedin()){
-                    Intent i = new Intent(getApplicationContext(),MainActivity.class);
-                    startActivity(i);
 
-                }
-                else {
-                    startActivity(new Intent(getApplicationContext(), Customer_login.class));
-                }
+                Intent i = new Intent(getApplicationContext(), ClientSignInActivity.class);
+                 startActivity(i);
+                ;
+//                if(Firebaseutil.isLoggedIn()){
+//                    Intent i = new Intent(getApplicationContext(),MainActivity.class);
+//                    startActivity(i);
+//
+//                }
+//                else {
+//                    startActivity(new Intent(getApplicationContext(), Customer_login.class));
+//                }
                 // You can also add any onClick functionality here
             }
         });

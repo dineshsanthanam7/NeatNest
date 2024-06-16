@@ -1,0 +1,57 @@
+<!-- activity_main_activityservicer.xml -->
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    tools:context=".MainActivityservicer">
+
+    <!-- Servicer Details -->
+    <TextView
+        android:id="@+id/usernameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Username:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/phoneNumberTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Phone Number:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_below="@id/usernameTextView"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/addressTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Address:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_below="@id/phoneNumberTextView"
+        android:layout_marginBottom="8dp"/>
+
+    <TextView
+        android:id="@+id/workExperienceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Work Experience:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_below="@id/addressTextView"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- Bookings RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/bookingsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/workExperienceTextView"/>
+
+</RelativeLayout>

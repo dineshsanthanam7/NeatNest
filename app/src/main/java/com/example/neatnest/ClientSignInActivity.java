@@ -20,8 +20,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class Servicer_login_Activity extends AppCompatActivity {
-TextView signup_servicer;
+public class ClientSignInActivity extends AppCompatActivity {
+    TextView signup_servicer;
     private EditText loginEmail, loginPassword;
     private Button loginButton;
     private FirebaseAuth auth;
@@ -30,7 +30,7 @@ TextView signup_servicer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_servicer_login2);
+        setContentView(R.layout.activity_client_sign_in);
         loginEmail = findViewById(R.id.editTextTextEmailAddress_servicer);
         loginPassword = findViewById(R.id.editTextTextPassword_servicer);
         loginButton = findViewById(R.id.let_in);
@@ -41,7 +41,7 @@ TextView signup_servicer;
 
         signup_servicer=findViewById(R.id.new_servicer);
         signup_servicer.setOnClickListener(v -> {
-            startActivity(new Intent(getApplicationContext(),Servicer_login.class));
+            startActivity(new Intent(getApplicationContext(), Customer_login.class));
         });
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,14 +56,14 @@ TextView signup_servicer;
                                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                                     @Override
                                     public void onSuccess(AuthResult authResult) {
-                                        Toast.makeText(Servicer_login_Activity.this, "Login Successful", Toast.LENGTH_SHORT).show();
-                                        startActivity(new Intent(Servicer_login_Activity.this, MainActivityservicer.class));
+                                        Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+                                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
                                         finish();
                                     }
                                 }).addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
-                                        Toast.makeText(Servicer_login_Activity.this, "Login Failed", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "Login Failed", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                     } else {

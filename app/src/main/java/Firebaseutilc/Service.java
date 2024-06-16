@@ -3,31 +3,30 @@ package Firebaseutilc;
 import java.io.Serializable;
 
 public class Service implements Serializable {
-    private String name;
-    private String description;
+    private String serviceName;
+    private String serviceDescription;
 
     public Service() {
-        // No-argument constructor required for Firestore
     }
 
-    public Service(String name, String description) {
-        this.name = name;
-        this.description = description;
+    public Service(String serviceName, String serviceDescription) {
+        this.serviceName = serviceName;
+        this.serviceDescription = serviceDescription;
     }
 
-    public String getName() {
-        return name;
+    public String getServiceName() {
+        return serviceName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
     }
 
-    public String getDescription() {
-        return description;
+    public String getServiceDescription() {
+        return serviceDescription;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setServiceDescription(String serviceDescription) {
+        this.serviceDescription = serviceDescription;
     }
 }

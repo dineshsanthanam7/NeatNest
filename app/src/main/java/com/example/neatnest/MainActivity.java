@@ -8,9 +8,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.neatnest.adaptor.ServiceAdapter;
+import com.google.firebase.FirebaseApp;
 
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,13 +18,14 @@ import Firebaseutilc.Service;
 public class MainActivity extends AppCompatActivity implements ServiceAdapter.OnServiceClickListener {
 
     private Button bookingDetails;
+    private List<Service> services;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        List<Service> services = new ArrayList<>();
+        FirebaseApp.initializeApp(this);
+        services = new ArrayList<>();
         services.add(new Service("House Cleaning", "Comprehensive house cleaning service."));
         services.add(new Service("Carpet Cleaning", "Professional carpet cleaning."));
         services.add(new Service("Window Cleaning", "Streak-free window cleaning."));
@@ -37,16 +37,16 @@ public class MainActivity extends AppCompatActivity implements ServiceAdapter.On
 
         bookingDetails = findViewById(R.id.bookingDetails);
         bookingDetails.setOnClickListener(v -> {
-            Intent i = new Intent(getApplicationContext(), ClientBookingActivity.class);
+            Intent i = new Intent(getApplicationContext(), ClientBookingsListActivity.class);
             startActivity(i);
         });
     }
 
     @Override
     public void onServiceClick(Service service) {
-        // Pass the selected service details to ClientBookingActivity
+        // Pass the selected service name to ClientBookingActivity
         Intent intent = new Intent(this, ClientBookingActivity.class);
-        intent.putExtra("service", (Serializable) service);
+        intent.putExtra("serviceName", service.getServiceName());
         startActivity(intent);
     }
 }

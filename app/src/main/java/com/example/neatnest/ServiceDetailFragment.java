@@ -28,14 +28,17 @@ public class ServiceDetailFragment extends Fragment {
     private ServicerAdapter servicerAdapter;
     private String clientUserId;
     private String clientUserName;
+    private String clientPhoneNumber; // Added client phone number
     private String serviceType;
     private String selectedDate;
     private String selectedTime;
 
-    public static ServiceDetailFragment newInstance(String serviceType) {
+    public static ServiceDetailFragment newInstance(String serviceType, String selectedDate, String selectedTime) {
         ServiceDetailFragment fragment = new ServiceDetailFragment();
         Bundle args = new Bundle();
         args.putString("serviceType", serviceType);
+        args.putString("selectedDate", selectedDate);
+        args.putString("selectedTime", selectedTime);
         fragment.setArguments(args);
         return fragment;
     }
@@ -49,12 +52,30 @@ public class ServiceDetailFragment extends Fragment {
         servicerRecyclerView = view.findViewById(R.id.servicerRecyclerView);
         servicerRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        clientUserId = Firebaseutil.currentUserId();
+        // Retrieve client details
+        retrieveClientDetails();
 
-        // Load servicers
-        loadServicers();
+        // Retrieve service type, date, and time from arguments
+        if (getArguments() != null) {
+            serviceType = getArguments().getString("serviceType");
+            selectedDate = getArguments().getString("selectedDate");
+            selectedTime = getArguments().getString("selectedTime");
+        }
 
         return view;
+    }
+
+    private void retrieveClientDetails() {
+        clientUserId = Firebaseutil.currentUserId();
+        Firebaseutil.getCurrentUserName(userName -> {
+            clientUserName = userName;
+            // Now get the client phone number
+            Firebaseutil.getCurrentUserPhone(phoneNumber -> {
+                clientPhoneNumber = phoneNumber;
+                // Load servicers after retrieving all client details
+                loadServicers();
+            });
+        });
     }
 
     private void loadServicers() {
@@ -67,7 +88,7 @@ public class ServiceDetailFragment extends Fragment {
                         servicers.add(servicer);
                     }
                     if (!servicers.isEmpty()) {
-                        servicerAdapter = new ServicerAdapter(servicers, clientUserId, clientUserName, getArguments().getString("serviceType"), selectedDate, selectedTime);
+                        servicerAdapter = new ServicerAdapter(servicers, clientUserId, clientUserName, clientPhoneNumber, serviceType, selectedDate, selectedTime);
                         servicerRecyclerView.setAdapter(servicerAdapter);
                     }
                 })

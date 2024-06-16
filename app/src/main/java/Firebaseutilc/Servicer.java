@@ -1,31 +1,52 @@
 package Firebaseutilc;
 
 public class Servicer {
-    private String name;
-    private String rating;
+    private String username;
+    private String phoneNumber;
+    private String address;
+    private String workExperience;
 
     public Servicer() {
-        // No-argument constructor required for Firestore
+        // Default constructor required for Firestore
     }
 
-    public Servicer(String name, String rating) {
-        this.name = name;
-        this.rating = rating;
+    public Servicer(String username, String phoneNumber, String address, String workExperience) {
+        this.username = username;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.workExperience = workExperience;
     }
 
-    public String getName() {
-        return name;
+    // Getters and setters
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getRating() {
-        return rating;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setRating(String rating) {
-        this.rating = rating;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getWorkExperience() {
+        return workExperience;
+    }
+
+    public void setWorkExperience(String workExperience) {
+        this.workExperience = workExperience;
     }
 }

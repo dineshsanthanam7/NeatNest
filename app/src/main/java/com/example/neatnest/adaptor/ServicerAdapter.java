@@ -5,12 +5,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.neatnest.R;
-
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.List;
@@ -23,14 +23,16 @@ public class ServicerAdapter extends RecyclerView.Adapter<ServicerAdapter.Servic
     private List<Usermodelser> servicerList;
     private String clientUserId;
     private String clientUserName;
+    private String clientPhoneNumber; // Added client phone number
     private String serviceType;
     private String selectedDate;
     private String selectedTime;
 
-    public ServicerAdapter(List<Usermodelser> servicerList, String clientUserId, String clientUserName, String serviceType, String selectedDate, String selectedTime) {
+    public ServicerAdapter(List<Usermodelser> servicerList, String clientUserId, String clientUserName, String clientPhoneNumber, String serviceType, String selectedDate, String selectedTime) {
         this.servicerList = servicerList;
         this.clientUserId = clientUserId;
         this.clientUserName = clientUserName;
+        this.clientPhoneNumber = clientPhoneNumber;
         this.serviceType = serviceType;
         this.selectedDate = selectedDate;
         this.selectedTime = selectedTime;
@@ -55,15 +57,26 @@ public class ServicerAdapter extends RecyclerView.Adapter<ServicerAdapter.Servic
             // Create the booking room with client and servicer details
             FirebaseFirestore firestore = FirebaseFirestore.getInstance();
             String roomId = clientUserId + "_" + servicer.getUserID();
-            BookingRoom bookingRoom = new BookingRoom(clientUserId, clientUserName, servicer.getUserID(), servicer.getUsername(),
+            BookingRoom bookingRoom = new BookingRoom(clientUserId, clientUserName, clientPhoneNumber,
+                    servicer.getUserID(), servicer.getUsername(), servicer.getPhonenumber(),
                     serviceType, selectedDate, selectedTime, "pending");
 
             firestore.collection("bookingRooms").document(roomId).set(bookingRoom)
                     .addOnSuccessListener(aVoid -> {
                         // Handle success, e.g., show a confirmation message
+                        Toast.makeText(
+                                holder.itemView.getContext(),
+                                "Booking Successful",
+                                Toast.LENGTH_SHORT
+                        ).show();
                     })
                     .addOnFailureListener(e -> {
                         // Handle failure
+                        Toast.makeText(
+                                holder.itemView.getContext(),
+                                "Booking Failed",
+                                Toast.LENGTH_SHORT
+                        ).show();
                     });
         });
     }

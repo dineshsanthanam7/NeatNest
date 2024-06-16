@@ -3,8 +3,8 @@ package com.example.neatnest;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,6 +30,7 @@ public class ClientBookingActivity extends AppCompatActivity {
     private ServicerAdapter servicerAdapter;
     private String clientUserId;
     private String clientUserName;
+    private String clientPhoneNumber; // Added client phone number
     private String serviceType;
     private EditText dateEditText;
     private EditText timeEditText;
@@ -45,7 +46,11 @@ public class ClientBookingActivity extends AppCompatActivity {
         servicerRecyclerView = findViewById(R.id.servicerRecyclerView);
         servicerRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        serviceType = getIntent().getStringExtra("serviceType"); // Get service type from intent
+        serviceType = getIntent().getStringExtra("serviceName");
+        clientPhoneNumber = getIntent().getStringExtra("clientPhoneNumber"); // Get client phone number
+        Toast.makeText(this, serviceType, Toast.LENGTH_SHORT).show();
+
+        // Get service type from intent
         clientUserId = Firebaseutil.currentUserId();
         Firebaseutil.getCurrentUserName(userName -> {
             clientUserName = userName;
@@ -70,6 +75,8 @@ public class ClientBookingActivity extends AppCompatActivity {
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, (view, year1, month1, dayOfMonth) -> {
             selectedDate = year1 + "-" + (month1 + 1) + "-" + dayOfMonth;
             dateEditText.setText(selectedDate);
+            // Reload servicers with the new date
+            loadServicers();
         }, year, month, day);
         datePickerDialog.show();
     }
@@ -82,6 +89,8 @@ public class ClientBookingActivity extends AppCompatActivity {
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, (view, hourOfDay, minute1) -> {
             selectedTime = hourOfDay + ":" + minute1;
             timeEditText.setText(selectedTime);
+            // Reload servicers with the new time
+            loadServicers();
         }, hour, minute, true);
         timePickerDialog.show();
     }
@@ -96,7 +105,7 @@ public class ClientBookingActivity extends AppCompatActivity {
                         servicers.add(servicer);
                     }
                     if (!servicers.isEmpty()) {
-                        servicerAdapter = new ServicerAdapter(servicers, clientUserId, clientUserName, serviceType, selectedDate, selectedTime);
+                        servicerAdapter = new ServicerAdapter(servicers, clientUserId, clientUserName, clientPhoneNumber, serviceType, selectedDate, selectedTime);
                         servicerRecyclerView.setAdapter(servicerAdapter);
                     }
                 })
