@@ -83,7 +83,7 @@ public class ServicerDashboardActivity extends AppCompatActivity {
 
     private void fetchServicerBookings() {
         // Implement your logic to fetch bookings for the servicer
-        // This part depends on your Firestore schema and how you store booking data
+        // This part depends on your Ficrestore schema and how you store booking data
     }
 
 

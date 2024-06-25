@@ -81,6 +81,9 @@ public class MainActivityservicer extends AppCompatActivity implements ServicerB
         // Handle booking acceptance logic here
         // Example: Update Firestore with accepted status using documentId
         acceptBookingInFirestore(booking, documentId);
+        recreate();
+
+
     }
 
     private void acceptBookingInFirestore(BookingRoom booking, String documentId) {
@@ -91,6 +94,7 @@ public class MainActivityservicer extends AppCompatActivity implements ServicerB
                 .update("status", "accepted")
                 .addOnSuccessListener(aVoid -> {
                     Toast.makeText(MainActivityservicer.this, "Booking accepted successfully", Toast.LENGTH_SHORT).show();
+
                     sendNotificationToClient(booking.getClientUserId());
                 })
                 .addOnFailureListener(e -> {
